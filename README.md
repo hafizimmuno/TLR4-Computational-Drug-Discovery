@@ -11,7 +11,7 @@
 
 ## Research Question
 
-> **Can interpretable machine learning combined with structure-based molecular docking reliably identify biologically relevant small-molecule modulators of the TLR4-MD2 complex — and what molecular features drive activity?**
+> **Can interpretable machine learning combined with structure-based molecular docking reliably identify biologically relevant small-molecule modulators of the TLR4-MD2 complex and what molecular features drive activity?**
 
 This project addresses a core challenge in computational immunopharmacology: bridging statistical bioactivity patterns from large databases with structural binding evidence at the atomic level, while maintaining full model interpretability for hypothesis generation.
 
@@ -26,13 +26,13 @@ Dysregulation of TLR4 signaling underlies two major therapeutic areas:
 - **Vaccine adjuvants** — TLR4 agonists amplify adaptive immune responses, directly relevant to vaccine design
 - **Sepsis and chronic inflammation** — TLR4 antagonists can suppress dangerous cytokine storms in infection and autoimmunity
 
-Understanding the molecular determinants of TLR4-MD2 ligand binding is therefore directly relevant to both immunotherapy and anti-inflammatory drug design — areas where interpretable computational models can guide experimental collaborators toward the most promising candidates.
+Understanding the molecular determinants of TLR4-MD2 ligand binding is therefore directly relevant to both immunotherapy and anti-inflammatory drug design. The areas where interpretable computational models can guide experimental collaborators toward the most promising candidates.
 
 ---
 
 ## Hypothesis
 
-Compounds that are statistically similar to known TLR4 actives in chemical space (ML prediction) should also demonstrate favorable geometric and energetic complementarity within the MD-2 binding pocket (docking). A significant correlation between these two independent metrics would validate that the ML model captures real structure-activity relationships — not statistical noise — and that the docking pipeline correctly identifies the biologically relevant binding mode.
+Compounds that are statistically similar to known TLR4 actives in chemical space (ML prediction) should also demonstrate favorable geometric and energetic complementarity within the MD-2 binding pocket (docking). A significant correlation between these two independent metrics would validate that the ML model captures real structure-activity relationships, not statistical noise and that the docking pipeline correctly identifies the biologically relevant binding mode.
 
 ---
 
@@ -82,11 +82,11 @@ ChEMBL Database (TLR4 bioactivity data)
 
 | Metric | Value | Biological Significance |
 |--------|-------|------------------------|
-| ML–Docking Correlation | **r = 0.67, p = 0.006** | Two independent methods significantly agree — validates ML captures structural information |
+| ML–Docking Correlation | **r = 0.67, p = 0.006** | Two independent methods significantly agree: validates ML captures structural information |
 | Random Forest ROC-AUC | **0.840** (5-fold CV) | Strong discrimination of active vs inactive TLR4 ligands |
 | Decision Tree ROC-AUC | **0.805** (5-fold CV) | Interpretable rules with only 3.5% accuracy trade-off |
 | Best Docking Score | **−9.37 kcal/mol** | Strong predicted binding affinity in MD-2 pocket |
-| Consensus Hits | **3 compounds** | High-confidence — ranked well by both independent methods |
+| Consensus Hits | **3 compounds** | High-confidence: ranked well by both independent methods |
 | Prediction vs Observed | Predicted ≈ Observed pChEMBL | Model validated against real experimental measurements |
 
 ---
@@ -97,15 +97,15 @@ ChEMBL Database (TLR4 bioactivity data)
 
 ![SHAP Beeswarm Plot](figures/shap_beeswarm.png)
 
-**Interpretation:** SHAP analysis reveals that the most influential ECFP4 fingerprint bits correspond to hydrophobic and aromatic structural environments. When these features are **present** (red, high feature value), they push predictions toward higher pChEMBL — consistent with TLR4's known biology: the MD-2 pocket is predominantly hydrophobic, and recognition is driven by lipid chain burial. The model has learned chemically meaningful patterns, not statistical artifacts.
+**Interpretation:** SHAP analysis reveals that the most influential ECFP4 fingerprint bits correspond to hydrophobic and aromatic structural environments. When these features are **present** (red, high feature value), they push predictions toward higher pChEMBL which is consistent with TLR4's known biology: the MD-2 pocket is predominantly hydrophobic, and recognition is driven by lipid chain burial. The model has learned chemically meaningful patterns, not statistical artifacts.
 
 ---
 
-### Structure-Based Docking — Ligand in the MD-2 Pocket
+### Structure-Based Docking : Ligand in the MD-2 Pocket
 
 ![TLR4-MD2 Docking Figure](figures/TLR4_docking_figure.png)
 
-**Interpretation:** The consensus hit docked into the hydrophobic MD-2 pocket (orange surface, Chain C) of the TLR4-MD2 complex (PDB: 3FXI). The yellow ligand is buried within the pocket, making contacts with key residues shown in magenta (PHE76, ARG90, PHE104, PHE126). The cyan ribbon represents TLR4 Chain A. PHE76, PHE126, and ARG90 are established critical residues for MD-2 ligand binding in the literature — their involvement here validates that the docking pipeline correctly identifies the biologically relevant binding mode.
+**Interpretation:** The consensus hit docked into the hydrophobic MD-2 pocket (orange surface, Chain C) of the TLR4-MD2 complex (PDB: 3FXI). The yellow ligand is buried within the pocket, making contacts with key residues shown in magenta (PHE76, ARG90, PHE104, PHE126). The cyan ribbon represents TLR4 Chain A. PHE76, PHE126, and ARG90 are established critical residues for MD-2 ligand binding in the literature and their involvement here validates that the docking pipeline correctly identifies the biologically relevant binding mode.
 
 ---
 
@@ -115,15 +115,15 @@ ChEMBL Database (TLR4 bioactivity data)
 
 It demonstrates that compounds the ML model identifies as structurally similar to known TLR4 actives in ChEMBL also tend to fit geometrically and energetically into the MD-2 pocket. This cross-validation between a data-driven approach and a physics-based approach provides higher confidence than either method alone — and directly reflects how computational predictions are used to prioritize compounds for experimental testing.
 
-**The SHAP analysis reveals that hydrophobic and aromatic features dominate TLR4 activity prediction** — consistent with the biology of the MD-2 hydrophobic pocket, which evolved to recognize the lipid A portion of LPS. Small molecules that mimic this hydrophobic burial while adding polar anchoring (ARG90, TYR65) represent the most promising design hypothesis.
+**The SHAP analysis reveals that hydrophobic and aromatic features dominate TLR4 activity prediction** which is consistent with the biology of the MD-2 hydrophobic pocket, which evolved to recognize the lipid A portion of LPS. Small molecules that mimic this hydrophobic burial while adding polar anchoring (ARG90, TYR65) represent the most promising design hypothesis.
 
-**The Decision Tree (ROC-AUC 0.805) provides directly actionable rules** for experimental collaborators — a synthetic chemist can assess whether a proposed compound satisfies an activity rule without running any software, enabling rapid hypothesis testing in the design-make-test cycle.
+**The Decision Tree (ROC-AUC 0.805) provides directly actionable rules** for experimental collaborators and a synthetic chemist can assess whether a proposed compound satisfies an activity rule without running any software, enabling rapid hypothesis testing in the design-make-test cycle.
 
 ---
 
 ## Notebooks
 
-### Notebook 01 — ML Bioactivity Modeling
+### Notebook 01 : ML Bioactivity Modeling
 `01_TLR4_ML_Bioactivity_Modeling.ipynb`
 
 Retrieves human TLR4 bioactivity data from ChEMBL, curates to quality-controlled IC50/EC50/Ki measurements in nM units, and aggregates per molecule using median pChEMBL. Converts molecules to ECFP4 Morgan fingerprints and trains a Random Forest Regressor to predict continuous pChEMBL values. Applies SHAP to identify which structural features drive TLR4 activity and maps top fingerprint bits back to chemical substructures.
@@ -138,7 +138,7 @@ Retrieves human TLR4 bioactivity data from ChEMBL, curates to quality-controlled
 
 ---
 
-### Notebook 02 — Molecular Docking Pipeline
+### Notebook 02 : Molecular Docking Pipeline
 `02_TLR4_Molecular_Docking.ipynb`
 
 Downloads the TLR4-MD2 crystal structure (PDB: 3FXI) in mmCIF format, parses with BioPython MMCIFParser, and cleans by retaining Chain A (TLR4) and Chain C (MD-2) while removing heteroatoms and non-standard residues. Calculates the geometric center of MD-2 as the docking grid center and runs AutoDock Vina.
@@ -153,7 +153,7 @@ Downloads the TLR4-MD2 crystal structure (PDB: 3FXI) in mmCIF format, parses wit
 
 ---
 
-### Notebook 03 — Integrated ML–Docking Pipeline
+### Notebook 03 : Integrated ML–Docking Pipeline
 `03_TLR4_Integrated_ML_Docking_Pipeline.ipynb`
 
 The core pipeline notebook connecting Notebooks 01 and 02. The trained RF model predicts pChEMBL for all compounds filtered to drug-like chemical space. The top 15 candidates are docked into the MD-2 pocket. Consensus ranking averages ML rank and docking rank to identify compounds validated by both independent approaches.
@@ -167,7 +167,7 @@ The core pipeline notebook connecting Notebooks 01 and 02. The trained RF model 
 
 ---
 
-### Notebook 04 — Decision Tree and Rule Extraction
+### Notebook 04 : Decision Tree and Rule Extraction
 `04_TLR4_Decision_Tree_Rule_Extraction.ipynb`
 
 Trains a shallow Decision Tree classifier (max_depth=4, balanced class weights) on binary TLR4 activity labels (pChEMBL ≥ 6 = active). Extracts explicit IF-THEN rules from all root-to-leaf paths and maps rule-critical fingerprint bits back to chemical substructures. Compares Decision Tree vs Random Forest on the interpretability-accuracy trade-off.
@@ -190,7 +190,7 @@ Trains a shallow Decision Tree classifier (max_depth=4, balanced class weights) 
 | CHEMBL4643502 | 6.28 | −9.19 kcal/mol | 6.60 |
 | CHEMBL224563 | 6.46 | −7.36 kcal/mol | 6.80 |
 
-ML predictions closely match experimentally observed pChEMBL values on all three top hits — confirming the model captures real structure-activity relationships rather than overfitting.
+ML predictions closely match experimentally observed pChEMBL values on all three top hits whcih confirm the model captures real structure-activity relationships rather than overfitting.
 
 ---
 
@@ -204,7 +204,7 @@ PyMOL analysis of the best consensus hit docked into the MD-2 pocket (PDB: 3FXI)
 
 **Electrostatic anchoring:** ARG90 (key positive charge), GLU92
 
-PHE76, PHE126, and ARG90 are established critical residues for MD-2 ligand binding in published crystal structures — validating the biological relevance of the predicted binding mode.
+PHE76, PHE126, and ARG90 are established critical residues for MD-2 ligand binding in published crystal structures and validate the biological relevance of the predicted binding mode.
 
 ---
 
@@ -291,7 +291,7 @@ TLR4-Computational-Drug-Discovery/
 
 ## Contact
 
-**Hafiz Ahmad**
+**Hafiz Hassan Ahmad**
 Université Claude Bernard Lyon 1
 hafiz.hassan.ahmad88@gmail.com
 GitHub: [@hafizimmuno](https://github.com/hafizimmuno)
