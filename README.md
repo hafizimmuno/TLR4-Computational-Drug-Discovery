@@ -155,6 +155,10 @@ Downloads the TLR4-MD2 crystal structure (PDB: 3FXI) in mmCIF format, parses wit
 | Exhaustiveness | 4 |
 | Poses reported | 3 |
 
+> ⚠️ **Note on exhaustiveness:** A value of 4 was used here as a computational 
+> cost trade-off for exploratory screening. Production runs and PhD-level 
+> campaigns would use the default value of 8 or higher to ensure more 
+> thorough conformational sampling of the binding site.
 ---
 
 ### Notebook 03 — Integrated ML–Docking Pipeline
